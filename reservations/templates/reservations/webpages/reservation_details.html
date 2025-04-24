@@ -1,0 +1,15 @@
+{% extends 'reservations/webpages/base.html' %}
+
+{% block title %} Res.{{reservation.id}} {% endblock %}
+
+{% block body %}
+  <h2 class="Display-2"> Reservation #{{ reservation.id }} </h2>
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item"> Restaurant: {{ reservation.restaurant.name }} </li>
+    <li class="list-group-item"> Date: {{ reservation.date }} </li>
+    <li class="list-group-item"> Time: {{ reservation.time }} </li>
+  </ul>
+
+  <a class="btn btn-primary" href="{% url 'reservation:cancel' reservation.id %}"> Cancel </a>
+  <a class="btn btn-primary" href="{% url 'reservation:list' %}"> See All Reservations </a>
+{% endblock %}

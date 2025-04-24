@@ -1,0 +1,16 @@
+{% extends 'restaurants/webpages/base.html' %}
+
+{% block title %} Restaurant Page {% endblock %}
+
+{% block body %}
+  <h2 class="Display-2"> {{ restaurant.name }} </h2>
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item"> Location: {{ restaurant.location }} </li>
+    <li class="list-group-item"> No of Tables: {{ restaurant.no_of_tables }} </li>
+  </ul>
+
+  <a class="btn btn-primary" href="{% url 'restaurant:update' restaurant.id %}"> Update </a>
+  <a class="btn btn-primary" href="{% url 'restaurant:delete' restaurant.id %}"> Delete </a>
+  <a class="btn btn-primary" href="{% url 'restaurant:all' %}"> See All Restaurants </a>
+
+{% endblock %}

@@ -1,0 +1,16 @@
+{% extends 'restaurants/webpages/base.html' %}
+
+{% block title %} Add New Restaurant {% endblock %}
+
+{% block body %}
+  <ul class="list-group list-group-flush">
+    {% for rest in restaurants %}
+      <li class="list-group-item">
+        <a href="{% url 'restaurant:details' rest.id %}"> {{rest.name}} </a>
+      </li>
+    {% endfor %}
+  </ul>
+
+  <a class="btn btn-primary" href="{% url 'restaurant:new' %}">Add Restaurant</a>
+
+{% endblock %}

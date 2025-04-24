@@ -1,0 +1,16 @@
+{% extends 'reservations/webpages/base.html' %}
+
+{% block title %} Your Reservations {% endblock %}
+
+{% block body %}
+  <h2 class="Display-2"> Reservations </h2>
+  <ul class="list-group list-group-flush">
+    {% for res in all_reservations %}
+      <li class="list-group-item">
+        <a href="{% url 'reservation:details' res.id%}"> {{ res.restaurant.name }} on {{ res.date }} </a>
+      </li>
+    {% endfor %}
+  </ul>
+
+  <a class="btn btn-primary" href="{% url 'reservation:new' %}"> New Reservation </a>
+{% endblock %}
