@@ -1,16 +1,34 @@
 {% extends 'restaurants/webpages/base.html' %}
 
-{% block title %} Add New Restaurant {% endblock %}
+{% block title %}Restaurants{% endblock %}
 
 {% block body %}
-  <ul class="list-group list-group-flush">
-    {% for rest in restaurants %}
-      <li class="list-group-item">
-        <a href="{% url 'restaurant:details' rest.id %}"> {{rest.name}} </a>
-      </li>
-    {% endfor %}
-  </ul>
+<div class="container mt-5" style="max-width: 700px;">
+  <div class="card shadow-sm">
+    <div class="card-header bg-primary text-white">
+      <h4 class="mb-0">Your Restaurants</h4>
+    </div>
 
-  <a class="btn btn-primary" href="{% url 'restaurant:new' %}">Add Restaurant</a>
+    {% if restaurants %}
+      <ul class="list-group list-group-flush">
+        {% for rest in restaurants %}
+          <li class="list-group-item d-flex justify-content-between align-items-center">
+            <a href="{% url 'restaurant:details' rest.id %}" class="text-decoration-none">{{ rest.name }}</a>
+            <i class="bi bi-chevron-right"></i>
+          </li>
+        {% endfor %}
+      </ul>
+    {% else %}
+      <div class="card-body">
+        <p class="text-muted mb-0">No restaurants found.</p>
+      </div>
+    {% endif %}
+  </div>
 
+  {% if user.is_superuser %}
+    <div class="text-end mt-3">
+      <a class="btn btn-primary" href="{% url 'restaurant:new' %}">+ Add Restaurant</a>
+    </div>
+  {% endif %}
+</div>
 {% endblock %}

@@ -1,11 +1,20 @@
 {% extends 'users/registration/base.html' %}
 
-{% block title %} Register {% endblock %}
+{% block title %}Register{% endblock %}
 
 {% block body %}
-  <form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit" class="btn btn-primary"> Register </button>
-  </form>
+<div class="container mt-5 d-flex justify-content-center">
+  <div class="card shadow-sm p-4" style="width: 100%; max-width: 600px;">
+    <h2 class="mb-4 text-center">Create an Account</h2>
+
+    <form method="post">
+      {% csrf_token %}
+      {{ form.as_p }}
+
+      <div class="d-grid mt-3">
+        <button type="submit" class="btn btn-primary btn-lg">Register</button>
+      </div>
+    </form>
+  </div>
+</div>
 {% endblock %}

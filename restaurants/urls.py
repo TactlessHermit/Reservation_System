@@ -22,7 +22,8 @@ app_name = 'restaurant'
 urlpatterns = [
     path('new', views.add_restaurant, name='new'),
     path('all', views.all_restaurants, name='all'),
-    path('<int:pk>', views.RestaurantDetails.as_view(), name='details'),
+    path('<int:pk>', views.restaurant_page, name='details'),
+    # path('<int:pk>', views.RestaurantDetails.as_view(), name='details'),
     path('<int:pk>/update', views.update_restaurant, name='update'),
     path('<int:pk>/delete', views.delete_restaurant, name='delete'),
 ]

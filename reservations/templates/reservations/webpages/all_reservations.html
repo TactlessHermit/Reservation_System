@@ -1,16 +1,26 @@
 {% extends 'reservations/webpages/base.html' %}
 
-{% block title %} Your Reservations {% endblock %}
+{% block title %}Your Reservations{% endblock %}
 
 {% block body %}
-  <h2 class="Display-2"> Reservations </h2>
-  <ul class="list-group list-group-flush">
-    {% for res in all_reservations %}
-      <li class="list-group-item">
-        <a href="{% url 'reservation:details' res.id%}"> {{ res.restaurant.name }} on {{ res.date }} </a>
-      </li>
-    {% endfor %}
-  </ul>
+<div class="container mt-5" style="max-width: 700px;">
+  <h2 class="mb-4">Your Reservations</h2>
 
-  <a class="btn btn-primary" href="{% url 'reservation:new' %}"> New Reservation </a>
+  {% if all_reservations %}
+    <ul class="list-group mb-4">
+      {% for res in all_reservations %}
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+          <a href="{% url 'reservation:details' res.id %}" class="text-decoration-none">
+            {{ res.restaurant.name }} — {{ res.date }}
+          </a>
+          <span class="badge bg-secondary">{{ res.time }}</span>
+        </li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <div class="alert alert-info">You have no reservations yet.</div>
+  {% endif %}
+
+  <a class="btn btn-primary" href="{% url 'reservation:new' %}">+ New Reservation</a>
+</div>
 {% endblock %}

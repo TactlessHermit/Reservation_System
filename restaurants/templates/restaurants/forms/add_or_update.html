@@ -1,9 +1,20 @@
 {% extends 'restaurants/forms/base.html' %}
 
+{% block title %}Add New Restaurant{% endblock %}
+
 {% block body %}
-  <form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button class="btn btn-primary" type="submit">Submit</button>
-  </form>
+<div class="container mt-5 d-flex justify-content-center">
+  <div class="card shadow-sm p-4" style="width: 100%; max-width: 600px;">
+    <h3 class="mb-4 text-center">Add New Restaurant</h3>
+
+    <form method="post">
+      {% csrf_token %}
+      {{ form.as_p }}
+
+      <div class="d-grid mt-3">
+        <button class="btn btn-primary btn-lg" type="submit">Submit</button>
+      </div>
+    </form>
+  </div>
+</div>
 {% endblock %}
