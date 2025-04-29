@@ -1,6 +1,6 @@
-{% extends 'users/registration/base.html' %}
+{% extends 'accounts/registration/base.html' %}
 
-{% block title %}Log In{% endblock %}
+{% block title %} Log In {% endblock %}
 
 {% block body %}
 <div class="container mt-5" style="max-width: 400px;">
@@ -8,19 +8,18 @@
 
   <form method="post">
     {% csrf_token %}
-
     <div class="mb-3">
-      <label for="formInput1" class="form-label">Email</label>
+      <label for="formInput1" class="form-label"> Email </label>
       <input type="email" class="form-control" id="formInput1" name="email" placeholder="you@example.com" required>
     </div>
 
     <div class="mb-3">
-      <label for="formInput2" class="form-label">Password</label>
+      <label for="formInput2" class="form-label"> Password </label>
       <input type="password" class="form-control" id="formInput2" name="password" placeholder="••••••••" required>
     </div>
 
     <div class="d-grid">
-      <button class="btn btn-primary" type="submit">Log In</button>
+      <button class="btn btn-primary" type="submit"> Log In </button>
     </div>
   </form>
 </div>

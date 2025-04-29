@@ -3,8 +3,9 @@ from django.shortcuts import render, redirect
 from django.urls import reverse
 from django.views import generic
 from reservations.forms import ReservationForm
-from reservations.models import Reservation
+from reservations.models import Reservation, Cancellations
 from restaurants.models import Restaurant
+from notifications import views
 
 
 # Create your views here.
@@ -19,6 +20,8 @@ def make_reservation(request):
             rest_id = form.cleaned_data['restaurant_name']
             reservation.restaurant = Restaurant.objects.get(id = rest_id)
             reservation.save()
+            #Send reservation confirmation email
+            views.send_reservation_email(reservation)
             return redirect(reverse('reservation:list'))
         else:
             messages.error(request, "Invalid form input.")
@@ -42,8 +45,15 @@ def all_reservations(request):
     return render(request, template_name, content)
 
 def cancel_reservation(request, pk):
-    reservation = Reservation.objects.get(id=pk)
-    reservation.delete()
+
+    if request.method == 'POST':
+        reason = request.POST['reason']
+
+        reservation = Reservation.objects.get(id=pk)
+
+        cancellation = Cancellations(reason=reason, reservation=reservation)
+
+        reservation.delete()
 
     messages.success(request, "Reservation cancelled.")
     return redirect(reverse('reservation:list'))

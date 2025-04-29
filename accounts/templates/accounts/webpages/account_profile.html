@@ -1,16 +1,17 @@
-{% extends 'users/webpages/base.html' %}
+{% extends 'accounts/webpages/base.html' %}
 
-{% block title %}User Profile{% endblock %}
+{% block title %} User Profile {% endblock %}
 
 {% block body %}
 <div class="container mt-5" style="max-width: 600px;">
   <div class="card shadow-sm">
     <div class="card-header bg-primary text-white">
-      <h2 class="mb-0">Profile: {{ user.first_name }} {{ user.last_name }}</h2>
+      <h2 class="mb-0"> {{ user.first_name }} {{ user.last_name }} </h2>
     </div>
     <ul class="list-group list-group-flush">
       <li class="list-group-item"><strong>Email:</strong> {{ user.email }}</li>
       <li class="list-group-item"><strong>Birthday:</strong> {{ user.birthday }}</li>
+      <li class="list-group-item"><strong>Phone:</strong> {{ user.phone_no }}</li>
     </ul>
   </div>
 </div>

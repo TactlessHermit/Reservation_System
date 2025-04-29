@@ -15,9 +15,14 @@
         {% endfor %}
     {% endif %}
 
-    <div class="container">
-        {% block body %}
-        {% endblock %}
-    </div>
+    {% if user.is_authenticated %}
+        <div class="container">
+          {% block body %} {% endblock %}
+      </div>
+    {% else %}
+        <div class="container">
+        <h2 class="Display-2"> You need to be logged in first. </h2>
+      </div>
+    {% endif %}
 </body>
 </html>

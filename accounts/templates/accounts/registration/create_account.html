@@ -1,11 +1,11 @@
-{% extends 'users/registration/base.html' %}
+{% extends 'accounts/registration/base.html' %}
 
-{% block title %}Register{% endblock %}
+{% block title %} Register {% endblock %}
 
 {% block body %}
 <div class="container mt-5 d-flex justify-content-center">
   <div class="card shadow-sm p-4" style="width: 100%; max-width: 600px;">
-    <h2 class="mb-4 text-center">Create an Account</h2>
+    <h2 class="mb-4 text-center"> Create Account </h2>
 
     <form method="post">
       {% csrf_token %}

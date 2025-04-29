@@ -1,0 +1,23 @@
+{% extends 'reservations/forms/base.html' %}
+
+{% block title %} Cancel Reservation {% endblock %}
+
+{% block body %}
+
+    <div class="container mt-5" style="max-width: 400px;">
+      <h2 class="mb-4 text-center"> Cancel Reservation </h2>
+
+      <form method="post">
+        {% csrf_token %}
+        <div class="mb-3">
+          <label for="formInput1" class="form-label"> Reason for Deletion: </label>
+          <input type="text" class="form-control" id="formInput1" name="reason" required>
+        </div>
+
+        <div class="d-grid">
+          <button class="btn btn-primary" type="submit"> Confirm </button>
+        </div>
+      </form>
+    </div>
+
+{% endblock %}

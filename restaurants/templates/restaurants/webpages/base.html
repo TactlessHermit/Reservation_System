@@ -16,7 +16,7 @@
           {% if user.is_authenticated %}
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="{% url 'user:profile' %}">My Page</a>
+              <a class="nav-link active" aria-current="page" href="{% url 'accounts:profile' %}">My Page</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="{% url 'restaurant:all' %}"> Restaurants </a>
@@ -25,34 +25,39 @@
               <a class="nav-link" href="{% url 'reservation:list' %}"> Reservations </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="{% url 'user:logout' %}">Log Out</a>
+              <a class="nav-link" href="{% url 'accounts:logout' %}">Log Out</a>
             </li>
           </ul>
         {% else %}
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             <li class="nav-item">
-              <a class="nav-link" href="{% url 'user:login' %}">Log In</a>
+              <a class="nav-link" href="{% url 'accounts:login' %}">Log In</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="{% url 'user:register' %}">Sign Up</a>
+              <a class="nav-link" href="{% url 'accounts:register' %}">Sign Up</a>
             </li>
           </ul>
         {% endif %}
         </div>
       </div>
     </nav>
-    {% if messages %}
-        {% for message in messages %}
-            <div class="alert alert-warning alert-dismissible fade show" role="alert">
-              <strong>Warning:</strong> {{message}}
-              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-            </div>
-        {% endfor %}
-    {% endif %}
+  {% if messages %}
+      {% for message in messages %}
+          <div class="alert alert-warning alert-dismissible fade show" role="alert">
+            <strong>Warning: </strong> {{message}}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>
+      {% endfor %}
+  {% endif %}
 
-    <div class="container">
-        {% block body %}
-        {% endblock %}
-    </div>
+  {% if user.is_authenticated %}
+      <div class="container">
+          {% block body %} {% endblock %}
+      </div>
+  {% else %}
+      <div class="container">
+        <h2 class="Display-2"> You need to be logged in first. </h2>
+      </div>
+  {% endif %}
 </body>
 </html>

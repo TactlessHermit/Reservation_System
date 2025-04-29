@@ -1,6 +1,3 @@
-from lib2to3.fixes.fix_input import context
-from tempfile import template
-
 from django.contrib import messages
 from django.shortcuts import render, get_object_or_404, redirect
 from django.urls import reverse
