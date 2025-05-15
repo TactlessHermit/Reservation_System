@@ -37,6 +37,14 @@
     </style>
 </head>
 <body>
+    {% if messages %}
+      {% for message in messages %}
+          <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <strong>Info: </strong> {{message}}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>
+      {% endfor %}
+    {% endif %}
 
     <div class="welcome-box">
         <h1>Welcome to <span style="color: #dc3545;">Reserve 'n' Save</span></h1>

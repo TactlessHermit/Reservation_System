@@ -21,7 +21,9 @@ app_name = 'reservation'
 
 urlpatterns = [
     path('new', views.make_reservation, name='new'),
-    path('all', views.all_reservations, name='list'),
-    path('<int:pk>', views.ReservationDetails.as_view(), name='details'),
+    path('active', views.all_reservations, name='list'),
+    path('old', views.past_reservations, name='past'),
+    path('<int:pk>', views.reservation_details, name='details'),
+    # path('<int:pk>', views.ReservationDetails.as_view(), name='details'),
     path('<int:pk>/cancel', views.cancel_reservation, name='cancel'),
 ]

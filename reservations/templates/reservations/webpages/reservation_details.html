@@ -16,7 +16,9 @@
     </ul>
 
     <div class="card-body d-flex justify-content-between">
-      <a href="{% url 'reservation:cancel' reservation.id %}" class="btn btn-outline-danger">Cancel</a>
+      {% if cancellable %}
+        <a href="{% url 'reservation:cancel' reservation.id %}" class="btn btn-outline-danger">Cancel</a>
+      {% endif %}
       <a href="{% url 'reservation:list' %}" class="btn btn-outline-secondary">See All Reservations</a>
     </div>
   </div>

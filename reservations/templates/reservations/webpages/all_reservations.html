@@ -21,6 +21,11 @@
     <div class="alert alert-info">You have no reservations yet.</div>
   {% endif %}
 
-  <a class="btn btn-primary" href="{% url 'reservation:new' %}">+ New Reservation</a>
+  <a class="btn btn-primary" href="{% url 'reservation:new' %}">+ New Reservation </a>
+  {% if past_reserv %}
+    <a class="btn btn-secondary" href="{% url 'reservation:list' %}"> Active Reservations </a>
+  {% else %}
+    <a class="btn btn-secondary" href="{% url 'reservation:past' %}"> Past Reservations </a>
+  {% endif %}
 </div>
 {% endblock %}

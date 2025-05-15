@@ -14,5 +14,6 @@
       <li class="list-group-item"><strong>Phone:</strong> {{ user.phone_no }}</li>
     </ul>
   </div>
+  <a href="{% url 'accounts:delete' user.id %}" class="btn btn-warning"> Delete Account </a>
 </div>
 {% endblock %}

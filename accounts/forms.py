@@ -9,7 +9,8 @@ from django import forms
 # Function to validate phone number input
 def validate_phone_number(value):
     if not re.match(r'^\+?1?\d{9,15}$', value):
-        raise ValidationError("Phone number must be entered in the format: '+999999999'. Up to 15 digits allowed.")
+        return False
+    return True
 
 # Form for creating user accounts in webpages
 class CustomUserCreationForm(UserCreationForm):
@@ -38,7 +39,7 @@ class CustomUserCreationForm(UserCreationForm):
         'place_holder': 'Re-enter Password',
         'class': 'mt-2 bg-transparent w-[400px] px-4 py-4 border-2 border-gray-500 rounded-lg'
     }))
-    phone_no = forms.CharField(
+    phone_no = forms.CharField(max_length=15,
         widget=forms.TextInput(attrs={
         'place_holder': 'Phone Number',
         'class': 'mt-2 bg-transparent w-[400px] px-4 py-4 border-2 border-gray-500 rounded-lg'

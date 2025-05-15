@@ -1,16 +1,23 @@
 from django.contrib import messages
 from django.contrib.auth import login, logout, authenticate
+from django.contrib.auth.views import PasswordResetView
 from django.shortcuts import render, redirect
 from django.urls import reverse
-from accounts.forms import CustomUserCreationForm
+from accounts.forms import CustomUserCreationForm, validate_phone_number
+from accounts.models import CustomUser
 
 
 # Create your views here.
 def homepage(request):
+    """
+        Renders homepage of website
+    """
     return render(request, 'accounts/webpages/home.html')
 
 def new_account(request):
-
+    """
+        Creates an account for a new user using form input
+    """
     if request.method == 'POST':
         form = CustomUserCreationForm(request.POST)
 
@@ -30,16 +37,21 @@ def new_account(request):
     return render(request, 'accounts/registration/create_account.html', {'form': form})
 
 def account_page(request):
+    """
+        Renders profile page of current user (if registered)
+    """
     return render(request, 'accounts/webpages/account_profile.html')
 
 def login_account(request):
-
+    """
+        Logs into account with given credentials
+    """
     if request.method == 'POST':
         email = request.POST['email']
         password = request.POST['password']
 
+        # Verifies inputted account credentials. Logs in if valid
         user = authenticate(request, username = email, password = password)
-
         if user is not None:
             login(request, user)
             return redirect(reverse('accounts:profile'))
@@ -49,11 +61,31 @@ def login_account(request):
     return render(request,'accounts/registration/login.html')
 
 def logout_account(request):
+    """
+        Logs out of current user's account
+    """
     logout(request)
     return redirect(reverse('accounts:home'))
 
 def update_account(request):
     pass
 
-def delete_account(request):
+def delete_account(request, pk):
+    """
+        Deletes the current user's account
+    """
+    try:
+        user = CustomUser.objects.get(id = pk)
+        user.delete()
+        messages.success(request, "Successfully deleted account.")
+        return redirect(reverse('accounts:home'))
+    except Exception as e:
+        if hasattr(e, "message"):
+            error_msg = e.message
+        else:
+            error_msg = e
+        messages.error(request, error_msg)
+        return redirect(reverse('accounts:profile'))
+
+class PasswordReset(PasswordResetView):
     pass
