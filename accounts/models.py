@@ -39,6 +39,7 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
     birthday = models.DateField(null=True)
     is_active = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=False)
+    photo = models.ImageField(default="default-profile.jpg", blank=True)
 
     objects = CustomUserManager()
 

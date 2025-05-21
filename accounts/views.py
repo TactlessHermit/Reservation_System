@@ -3,7 +3,7 @@ from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.views import PasswordResetView
 from django.shortcuts import render, redirect
 from django.urls import reverse
-from accounts.forms import CustomUserCreationForm, validate_phone_number
+from accounts.forms import CustomUserCreationForm, validate_phone_number, CustomUserChangeForm
 from accounts.models import CustomUser
 
 
@@ -68,7 +68,20 @@ def logout_account(request):
     return redirect(reverse('accounts:home'))
 
 def update_account(request):
-    pass
+
+    if request.method == 'POST':
+        form = CustomUserChangeForm(request.POST, instance=request.user)
+
+        if form.is_valid():
+            # Save updated user
+            form.save()
+            # Redirect to user profile page
+            return redirect(reverse("accounts:profile"))
+
+    else:
+        form = CustomUserChangeForm(instance=request.user)
+
+    return render(request, 'accounts/registration/update_account.html', {'form': form})
 
 def delete_account(request, pk):
     """

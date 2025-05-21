@@ -8,12 +8,17 @@
     <div class="card-header bg-primary text-white">
       <h2 class="mb-0"> {{ user.first_name }} {{ user.last_name }} </h2>
     </div>
+    <img class="align-self-center mr-3" src="{{ user.photo.url }}" height="200" width="200">
     <ul class="list-group list-group-flush">
       <li class="list-group-item"><strong>Email:</strong> {{ user.email }}</li>
       <li class="list-group-item"><strong>Birthday:</strong> {{ user.birthday }}</li>
       <li class="list-group-item"><strong>Phone:</strong> {{ user.phone_no }}</li>
     </ul>
   </div>
-  <a href="{% url 'accounts:delete' user.id %}" class="btn btn-warning"> Delete Account </a>
+  <br>
+  <div class="text-center">
+    <a href="{% url 'accounts:update' %}" class="btn btn-warning"> Update Account </a>
+    <a href="{% url 'accounts:delete' user.id %}" class="btn btn-warning"> Delete Account </a>
+  </div>
 </div>
 {% endblock %}

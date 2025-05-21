@@ -13,6 +13,7 @@ class Restaurant(models.Model):
 
 class Tag(models.Model):
     name = models.TextField(max_length=100)
+    icon = models.ImageField(default="default-profile.jpg", blank=True)
 
     # STRING REPRESENTATION OF OBJECT (FOR ADMIN)
     def __str__(self):

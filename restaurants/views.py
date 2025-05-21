@@ -122,15 +122,21 @@ def filtered_restaurants(request):
         return render(request, template_name, context)
 
 def show_tags(request):
+    """
+        Displays all restaurant tags
+    """
     tags = Tag.objects.all().values()
     template_name = 'restaurants/webpages/select_tag.html'
     context = {
-        'tags': tags,
+        'tags': tags
     }
 
     return render(request, template_name, context)
 
 def search_by_tag(request, tag_name):
+    """"
+        Gets list of restaurants with given restaurant tag
+    """
     restaurants = []
 
     # Query join restaurant & restaurant_tags. Filter based on tag_name
@@ -141,7 +147,7 @@ def search_by_tag(request, tag_name):
         for result in results:
             restaurants.append(result.restaurant)
 
-    tags = Tag.objects.all().values()
+    tags = Tag.objects.all()
     template_name = 'restaurants/webpages/all_restaurants.html'
     context = {
         'restaurants': restaurants,

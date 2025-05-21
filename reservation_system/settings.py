@@ -9,10 +9,8 @@ https://docs.djangoproject.com/en/5.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.1/ref/settings/
 """
-
+import os.path
 from pathlib import Path
-
-from django.conf.global_settings import EMAIL_BACKEND, EMAIL_HOST, EMAIL_USE_TLS, EMAIL_HOST_PASSWORD
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -122,7 +120,17 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
+# Directory for saving static files in an app
 STATIC_URL = 'static/'
+
+# Specifies list of directories with static files
+#STATICFILES_DIRS = []
+
+# Directory for saving media files
+MEDIA_URL = 'media/'
+
+# Absolute path of media directory
+MEDIA_ROOT = BASE_DIR / 'media'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
